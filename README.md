@@ -38,7 +38,7 @@ using RepositoryManager.Storage;
 using RepositoryManager.Content;
 
 // Create repository with in-memory storage
-var repository = new RepositoryManager(new InMemoryStorage());
+var repository = new RepositoryService(new InMemoryStorage());
 repository.Initialize();
 
 // Register JSON content
@@ -77,7 +77,7 @@ using RepositoryManager.Content;
 
 // Create repository with file-based storage
 var fileStorage = new FileBasedStorage("./repository_data");
-var repository = new RepositoryManager(fileStorage);
+var repository = new RepositoryService(fileStorage);
 repository.Initialize();
 
 // Register items (will be persisted to disk)
@@ -86,7 +86,7 @@ repository.Register("product1", jsonContent);
 
 // Data persists across application restarts
 // Create new instance and retrieve saved data
-var newRepository = new RepositoryManager(new FileBasedStorage("./repository_data"));
+var newRepository = new RepositoryService(new FileBasedStorage("./repository_data"));
 newRepository.Initialize();
 
 var retrieved = newRepository.Retrieve("product1");
@@ -100,7 +100,7 @@ using RepositoryManager;
 using RepositoryManager.Storage;
 using RepositoryManager.Content;
 
-var repository = new RepositoryManager();
+var repository = new RepositoryService();
 repository.Initialize();
 
 try
@@ -244,7 +244,7 @@ public class DatabaseStorage : IRepositoryStorage
 }
 
 // Usage
-var repository = new RepositoryManager(new DatabaseStorage("connection_string"));
+var repository = new RepositoryService(new DatabaseStorage("connection_string"));
 ```
 
 ## Building the Library
@@ -299,3 +299,4 @@ The compiled library will be in `bin/Debug/net6.0/RepositoryManager.dll` or `bin
 - **Compilable as class library** - Not an executable, produces a .dll
 - **Protected from overwrites** - Once registered, items cannot be overwritten
 - **Single initialization** - Initialize() can only be called once per instance
+
