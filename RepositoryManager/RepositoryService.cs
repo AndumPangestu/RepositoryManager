@@ -7,7 +7,7 @@ namespace RepositoryManager
     /// <summary>
     /// Main Repository Manager Class - Manages storage and retrieval of strongly-typed content
     /// </summary>
-    public class RepositoryManager
+    public class RepositoryService
     {
         private readonly IRepositoryStorage _storage;
         private bool _isInitialized;
@@ -17,7 +17,7 @@ namespace RepositoryManager
         /// Constructor with dependency injection for flexibility
         /// </summary>
         /// <param name="storage">Storage implementation (defaults to InMemoryStorage)</param>
-        public RepositoryManager(IRepositoryStorage? storage = null)
+        public RepositoryService(IRepositoryStorage? storage = null)
         {
             _storage = storage ?? new InMemoryStorage();
             _isInitialized = false;
